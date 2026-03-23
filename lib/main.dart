@@ -55,7 +55,10 @@ class _MyAppState extends State<MyApp> {
           },
         ),
       )
-      ..loadRequest(Uri.parse(_lastUrl), headers: {"Cache-Control": "no-cache"});
+      ..loadRequest(Uri.parse(_lastUrl), headers: {
+        "X-APP-KEY": "AISH-APP-SECRET-1063",
+        "Cache-Control": "no-cache",
+      });
   }
 
   Future<void> _launchExternal(String url) async {
