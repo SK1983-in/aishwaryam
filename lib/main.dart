@@ -50,12 +50,16 @@ class _MyAppState extends State<MyApp> {
             return NavigationDecision.navigate;
           },
           onWebResourceError: (error) {
-            // Show custom offline / error HTML
-            _controller.loadHtmlString(_offlinePage());
+            if (error.isForMainFrame == true && error.errorCode != -999) {
+              _controller.loadHtmlString(_offlinePage());
+            }
           },
         ),
       )
-      ..loadRequest(Uri.parse(_lastUrl), headers: {"Cache-Control": "no-cache"});
+      ..loadRequest(Uri.parse(_lastUrl), headers: {
+        "X-APP-KEY": "AISH-APP-SECRET-1063",
+        "Cache-Control": "no-cache",
+      });
   }
 
   Future<void> _launchExternal(String url) async {
